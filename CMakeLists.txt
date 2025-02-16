@@ -8,6 +8,7 @@ endif()
 
 # Find dependencies provided by vcpkg (via vcpkg.cmake)
 find_package(fmt CONFIG REQUIRED)
+find_package(directxmath CONFIG REQUIRED)
 
 set(
     CPP_TEMPLATE_SOURCES
