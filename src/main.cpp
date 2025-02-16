@@ -2,6 +2,7 @@
 #include <fmt/core.h>
 
 #include <cstdio>
+#include <DirectXMath.h>
 
 inline bool null_check(const char* Str0)
 {

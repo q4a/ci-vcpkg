@@ -21,7 +21,7 @@ set(
 
 # main target
 add_executable(main ${CPP_TEMPLATE_SOURCES})
-target_link_libraries(main PRIVATE fmt::fmt-header-only)
+target_link_libraries(main PRIVATE fmt::fmt-header-only Microsoft::DirectXMath)
 set_property(TARGET main PROPERTY CXX_STANDARD 23)
 
 # tests target
