@@ -24,6 +24,8 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-24.04, macos-15, windows-latest]
+    env:
+      VCPKG_BINARY_SOURCES: clear;files,${{ github.workspace }}/vcpkg_cache,readwrite
     #env:
     #
     # [OPTIONAL] Define the vcpkg's triplet
@@ -38,12 +40,25 @@ jobs:
         with:
           submodules: true
 
+      - name: Restore VCPKG cache
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ github.workspace }}/vcpkg_cache
+          key: vcpkg-${{runner.os}}-${{runner.arch}}-${{ hashFiles('vcpkg.json') }}
+          restore-keys: vcpkg-${{runner.os}}-${{runner.arch}}-
+
       - uses: lukka/get-cmake@latest
 
-      - name: Restore from cache and setup vcpkg executable and data files.
+      - name: Setup VCPKG (can't restore cache for now)
         uses: lukka/run-vcpkg@v11
         with:
           vcpkgJsonGlob: 'vcpkg.json'
+
+      - name: Install libs
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt update
+          sudo apt install libltdl-dev python3-jinja2
 
       # Note: if the preset misses the "configuration", it is possible to explicitly select the
       # configuration with the additional `--config` flag, e.g.:
@@ -57,3 +72,9 @@ jobs:
           configurePreset: 'ninja-multi-vcpkg'
           buildPreset: 'ninja-vcpkg-release'
           testPreset: 'test-release'
+
+      - name: Save vcpkg cache
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ github.workspace }}/vcpkg_cache
+          key: vcpkg-${{runner.os}}-${{runner.arch}}-${{ hashFiles('vcpkg.json') }}
