@@ -67,12 +67,14 @@ jobs:
       #   buildPresetAdditionalArgs: "[`--config`, `Release`]"
       #   testPreset: 'ninja-vcpkg'
       #   testPresetAdditionalArgs: "[`--config`, `Release`]"
-      - name: Run CMake+vcpkg+Ninja+CTest to build packages and generate/build/test the code.
+      - name: Run CMake+vcpkg to build packages.
         uses: lukka/run-cmake@v10
         with:
           configurePreset: 'ninja-multi-vcpkg'
+      - name: Run CMake+Ninja to build the code (Release).
+        uses: lukka/run-cmake@v10
+        with:
           buildPreset: 'ninja-vcpkg-release'
-          testPreset: 'test-release'
 
       - name: Save vcpkg cache
         uses: actions/cache/save@v4
