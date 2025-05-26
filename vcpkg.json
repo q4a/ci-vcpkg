@@ -4,27 +4,7 @@
   "dependencies": [
     "directxmath",
     "fmt",
-    "libjpeg-turbo",
-    "msdfgen",
-    "libpng",
-    "zlib",
-    "plf-stack",
-    "spdlog",
-    "fast-float",
-    "rapidhash",
-    "sdl3",
-    "mimalloc",
-    "sentry-native",
-    {
-      "name": "imgui",
-      "features": [ "sdl3-binding" ]
-    },
-    "catch2",
-    "tomlplusplus",
-    "joltphysics",
-    "portable-snippets",
-    "assimp",
-    "wil"
+    "sdl3"
   ],
   "builtin-baseline": "8f54ef5453e7e76ff01e15988bf243e7247c5eb5"
 }
