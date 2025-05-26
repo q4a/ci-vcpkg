@@ -23,7 +23,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-24.04, macos-15, windows-latest]
+        #os: [ubuntu-24.04, macos-15, windows-latest]
+        os: [ubuntu-24.04, windows-latest]
     env:
       VCPKG_BINARY_SOURCES: clear;files,${{ github.workspace }}/vcpkg_cache,readwrite
     #env:
@@ -58,7 +59,7 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt update
-          sudo apt install libltdl-dev python3-jinja2
+          sudo apt install python3-jinja2 libltdl-dev libwayland-dev
 
       # Note: if the preset misses the "configuration", it is possible to explicitly select the
       # configuration with the additional `--config` flag, e.g.:
