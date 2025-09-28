@@ -88,7 +88,7 @@ jobs:
 
       - name: Install Vulkan SDK
         if: runner.os == 'Windows'
-        uses: humbletim/install-vulkan-sdk@033219e2d69dd4d3e873e217eb385fdd4b4438f4
+        uses: q4a/install-vulkan-sdk@volk
         with:
           version: 1.4.321.0
           cache: true
@@ -100,7 +100,7 @@ jobs:
       # run: cmake --build --preset ninja-vcpkg --config Release
       - name: Build (Release configuration)
         run: |
-          dir
+          dir D:/a/ci-vcpkg/ci-vcpkg/VULKAN_SDK/Include
           cmake --build --preset ninja-vcpkg-release
 
       # Test the whole project with CTest, again Release configuration only.
